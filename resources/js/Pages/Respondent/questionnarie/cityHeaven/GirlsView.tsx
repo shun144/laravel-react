@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, MouseEvent, memo } from "react";
 import { GirlType, ResultType } from '@/Pages/Respondent/types';
-import { countUpAchievement } from '@/Pages/Respondent/utils';
+import { countUpAchievement, sanitizeText } from '@/Pages/Respondent/utils';
 import { useRespondentStore } from '@/Pages/Respondent/store';
 import ResponsivePagination from 'react-responsive-pagination';
 import { usePage } from '@inertiajs/react';
@@ -10,6 +10,9 @@ type Props = {
 }
 const peoplePerPage = 10;
 const highLank = 3; // highLankに指定した順位までラベルの色を上位用にする
+
+
+
 
 const GirlsView = ({ girlsData }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,10 +65,11 @@ const GirlsView = ({ girlsData }: Props) => {
         </div>
       </div>
 
-      {/* <div className='w-full h-12 flex flex-col justify-center items-center my-2 px-2 md:min-h-20 md:max-h-20' >
-        <div className=' text-slate-700 font-bold text-md md:text-3xl'>
-          {message}
-        </div>
+      {/* <div className='w-full flex flex-col justify-center items-center my-2 px-2 md:w-11/12 md:min-h-12 max-h-40' >
+        <div
+          className=' text-slate-600 font-semibold text-sm md:font-bold md:text-3xl md:py-8'
+          dangerouslySetInnerHTML={sanitizeText(message as string)}
+        />
       </div> */}
 
       <div className='w-full px-1 md:w-11/12'>
@@ -73,7 +77,7 @@ const GirlsView = ({ girlsData }: Props) => {
           md:mb-10 md:grid-cols-5 md:gap-x-6 md:gap-y-8'>
           {
             currentItems &&
-            currentItems.map(({ id, name, catchphrase, w_shukkin, diary_flg, review_flg, earn_point, today_work_flg, picture_url, mypage_url, bwh }, idx) => (
+            currentItems.map(({ id, name, catchphrase, w_shukkin, diary_flg, review_flg, earn_point, today_work_flg, picture_url, mypage_url, bwh, age, height, cup }, idx) => (
 
               <div
                 key={id}
@@ -94,11 +98,14 @@ const GirlsView = ({ girlsData }: Props) => {
 
                 <div className="w-full flex flex-col justify-between leading-normal">
                   <div className="font-bold tracking-tight text-gray-900 text-md md:text-xl">
-                    {name}
+                    {`${name}(${age})`}
                   </div>
                   <div className="font-normal text-gray-700 pb-1 min-h-8 md:pb-2 md:min-h-12 ">
                     <div className='text-sm md:text-lg'>{catchphrase}</div>
-                    <div className='text-sm md:text-md'>{`(B:${bwh[0]} W:${bwh[1]} H:${bwh[2]})`}</div>
+                    <div className='text-sm md:text-md'>
+                      {`【${height}cm / ${bwh[0]}(${cup}):${bwh[1]}:${bwh[2]}】`}
+                      {/* {`(B:${bwh[0]} W:${bwh[1]} H:${bwh[2]} 身長:${height} カップ:${cup})`} */}
+                    </div>
                   </div>
 
                   <div className="w-full flex justify-end items-center md:min-h-7">

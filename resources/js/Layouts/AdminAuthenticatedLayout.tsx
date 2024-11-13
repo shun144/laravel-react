@@ -4,6 +4,8 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
+import Logo from '@/Components/Logo';
+
 
 export default function AdminAuthenticated({ header, children }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
@@ -16,9 +18,10 @@ export default function AdminAuthenticated({ header, children }: PropsWithChildr
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                            <div className="shrink-0 flex items-center overflow-hidden">
+                                <Link href="/admin/users" className='h-24'>
+                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
+                                    <Logo className="block h-full w-auto object-cover fill-current" />
                                 </Link>
                             </div>
 

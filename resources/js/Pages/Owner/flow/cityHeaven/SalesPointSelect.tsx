@@ -11,7 +11,7 @@ type Props = {
   salePoints: SalsPointType[];
 }
 
-const optionMaxNum = 3;
+const optionMaxNum = 5;
 
 const SalesPointSelect = ({ nodeId, choiceId, salePoints }: Props) => {
 

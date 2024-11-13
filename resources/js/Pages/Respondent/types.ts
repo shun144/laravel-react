@@ -100,6 +100,9 @@ export type GirlType = {
   id: string;
   name: string;
   catchphrase: string | string[];
+  age: string;
+  height: string;
+  cup: string;
   diary_flg: boolean;
   review_flg: boolean;
   picture_url: string;
