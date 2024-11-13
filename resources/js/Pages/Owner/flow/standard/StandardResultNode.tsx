@@ -1,11 +1,9 @@
 import React, { useState, ChangeEventHandler, useCallback, ChangeEvent, memo } from 'react'
 import { Node, NodeProps, Handle, Position, useReactFlow } from '@xyflow/react';
-import { ResultNodeType } from '../../types';
-import { showContextMenu } from '../../components/subMenu/ResultSubMenu';
+import { ResultNodeType } from '@/Pages/Owner/types';
+import { showContextMenu } from '@/Pages/Owner/components/subMenu/ResultSubMenu';
+import { resultMaxLength, messageMaxLength } from '@/Pages/Owner/constants';
 import { BsThreeDots } from "react-icons/bs";
-
-const resultMaxLength = 80;
-const messageMaxLength = 150;
 
 const StandardResultNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<ResultNodeType>>) => {
 

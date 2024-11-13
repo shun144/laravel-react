@@ -1,10 +1,9 @@
 import React, { useState, ChangeEventHandler, useCallback, ChangeEvent, memo } from 'react'
 import { Node, NodeProps, Handle, Position, useReactFlow } from '@xyflow/react';
-import { RecommendNodeType } from '../../types';
-import { showContextMenu } from '../../components/subMenu/ResultSubMenu';
+import { RecommendNodeType } from '@/Pages/Owner/types';
+import { showContextMenu } from '@/Pages/Owner/components/subMenu/ResultSubMenu';
 import { BsThreeDots } from "react-icons/bs";
-
-const messageMaxLength = 150;
+import { messageMaxLength } from '@/Pages/Owner/constants';
 
 const CityHeavenResultNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<RecommendNodeType>>) => {
 

@@ -30,19 +30,23 @@ const SalesPointSelect = ({ nodeId, choiceId, salePoints }: Props) => {
         borderRadius: 'none',
         border: 'none',
         backgroundColor: '#0f172a',
-        fontSize: "0.7rem",
+        height: "56px",
+        // backgroundColor: 'red',
+        fontSize: "16px",
         textAlign: 'center',
         boxShadow: "none",
         '&:hover': {
           border: 'none',
           cursor: 'pointer',
+          backgroundColor: '#1e293b',
         },
       }),
       input: (styles) => ({
         ...styles,
+        color: '#f1f5f9',
         "input:focus": {
           boxShadow: "none",
-          outline: "none"
+          outline: "none",
         },
       }),
       option: (styles, { isDisabled, isFocused, isSelected }) => ({
