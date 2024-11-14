@@ -1,1 +1,0 @@
-import{G as a}from"./iconBase-D6-3dF8-.js";const e=80,o=150,n=100,c=40,r=5;function h(t){return a({tag:"svg",attr:{fill:"currentColor",viewBox:"0 0 16 16"},child:[{tag:"path",attr:{d:"M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"},child:[]}]})(t)}export{h as B,c as a,r as c,o as m,n as q,e as r};

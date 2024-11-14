@@ -1,5 +1,5 @@
-import { SVGAttributes, memo, ImgHTMLAttributes } from 'react';
-import Icon from '@/Assets/AristaPro.jpg';
+import { memo, ImgHTMLAttributes } from 'react';
+import Icon from '@/Assets/logo.png';
 
 const Logo = (props: ImgHTMLAttributes<HTMLImageElement>) => {
   return (
