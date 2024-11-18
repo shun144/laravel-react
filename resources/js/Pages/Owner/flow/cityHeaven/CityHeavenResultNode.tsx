@@ -31,7 +31,7 @@ const CityHeavenResultNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<Rec
           <textarea
             id="message"
             rows={5}
-            className="block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
+            className="nowheel block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
             value={nodeData.message}
             onChange={(event) => handleUpdateMessage(event)}
             placeholder="メッセージを入力してください"

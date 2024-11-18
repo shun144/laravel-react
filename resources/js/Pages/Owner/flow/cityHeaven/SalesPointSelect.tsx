@@ -1,8 +1,8 @@
 
 import { useMemo, useState, memo, useCallback, useEffect } from 'react'
 import Select, { StylesConfig, components, MenuProps, GroupBase, MultiValue } from "react-select";
-import { QuestionNodeType, SalsPointType } from '../../types';
-import { salesPoints } from '../../salesPoints';
+import { QuestionNodeType, SalsPointType } from '@/Pages/Owner/types';
+import { optionMaxNum, salesPoints } from '@/Pages/Owner/constants';
 import { useReactFlow } from '@xyflow/react';
 
 type Props = {
@@ -10,8 +10,6 @@ type Props = {
   choiceId: string;
   salePoints: SalsPointType[];
 }
-
-const optionMaxNum = 5;
 
 const SalesPointSelect = ({ nodeId, choiceId, salePoints }: Props) => {
 

@@ -1,6 +1,5 @@
 import { router } from '@inertiajs/react';
 import { useEffect, useState, useCallback, MouseEvent, useMemo, Fragment, memo } from 'react';
-// import { User } from '../../../types';
 import { User } from '@/types';
 import { toast } from '@/Pages/Owner/components/toast/CustomToaster'
 import DebouncedInput from '@/Components/DebouncedInput';
@@ -265,11 +264,8 @@ const Table = ({ initialUsers, success, fail }: TableProps) => {
                 ))}
               </select>
             </div>
-
           </div>
-
         </div>
-
       </div >
     </>
   )

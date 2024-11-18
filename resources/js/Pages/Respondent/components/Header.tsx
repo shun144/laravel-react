@@ -7,7 +7,6 @@ type Props = {
 
 const Header = ({ title }: Props) => {
   const [isOverflow, setIsOverflow] = useState(false);
-
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

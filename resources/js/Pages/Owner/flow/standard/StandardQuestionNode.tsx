@@ -89,7 +89,7 @@ const StandardQuestionNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<Que
           <textarea
             id="message"
             rows={3}
-            className="block resize-none p-2.5 w-full text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
+            className="nowheel block resize-none p-2.5 w-full text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
             value={nodeData.topic}
             maxLength={questionMaxLength}
             placeholder="質問内容を入力してください"

@@ -32,7 +32,7 @@ const StandardResultNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<Resul
           <textarea
             id="result"
             rows={3}
-            className="block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
+            className="nowheel block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
             value={nodeData.result}
             onChange={(event) => handleUpdateResult(event)}
             placeholder="診断結果を入力してください"
@@ -48,7 +48,7 @@ const StandardResultNode = ({ id: nodeId, data: nodeData }: NodeProps<Node<Resul
           <textarea
             id="message"
             rows={5}
-            className="block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
+            className="nowheel block resize-none p-2.5 w-full text-md text-slate-200 placeholder-slate-500 bg-slate-800 rounded-sm border-1 ring-0 border-slate-400 focus:ring-0 focus:border-slate-200"
             value={nodeData.message}
             onChange={(event) => handleUpdateMessage(event)}
             placeholder="メッセージを入力してください"
