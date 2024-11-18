@@ -74,7 +74,7 @@ const GirlsView = ({ girlsData }: Props) => {
           md:mb-10 md:grid-cols-5 md:gap-x-6 md:gap-y-8'>
           {
             currentItems &&
-            currentItems.map(({ id, name, catchphrase, w_shukkin, diary_flg, review_flg, earn_point, today_work_flg, picture_url, mypage_url, bwh, age, height, cup }, idx) => (
+            currentItems.map(({ id, name, catchphrase, w_shukkin, diary_flg, review_flg, earn_point, today_work_flg, picture_url, mypage_url, bwh, age, height, cup, isFullMatch }, idx) => (
 
               <div
                 key={id}
@@ -104,12 +104,40 @@ const GirlsView = ({ girlsData }: Props) => {
                     </div>
                   </div>
 
-                  <div className="w-full flex justify-end items-center md:min-h-7">
-                    <a className="block px-2 py-2 underline text-end text-violet-500 text-sm md:text-md md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
+                  <div className="w-full flex flex-col md:flex-row md:justify-between items-end md:items-center  md:min-h-7 text-sm md:text-md">
+
+                    {/* <div className="text-slate-500 select-none">
+                      {isFullMatch ? "" : "こちらもオススメ女性"}
+                    </div> */}
+
+                    <a className="block md:px-2 pb-2 underline text-end text-violet-500  md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
                       onClick={(e) => handleClick(e, name, mypage_url)}
                     >女の子のマイページ
                     </a>
                   </div>
+
+                  {/* <div className="w-full flex justify-between items-center md:min-h-7 text-sm md:text-md">
+
+                    <div className="text-slate-500 select-none">
+                      {isFullMatch ? "" : "こちらもオススメ女性"}
+                    </div>
+
+                    <a className="block px-2 py-2 underline text-end text-violet-500  md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
+                      onClick={(e) => handleClick(e, name, mypage_url)}
+                    >女の子のマイページ
+                    </a>
+                  </div> */}
+
+
+
+                  {/* <div className="w-full flex justify-end items-center md:min-h-7">
+                    <a className="block px-2 py-2 underline text-end text-violet-500 text-sm md:text-md md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
+                      onClick={(e) => handleClick(e, name, mypage_url)}
+                    >女の子のマイページ
+                    </a>
+                  </div> */}
+
+
                 </div>
               </div>
             ))

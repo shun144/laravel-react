@@ -40,28 +40,55 @@ const useProcessedGirlsData = ({ answerHistories }: Props) => {
       });
     });
 
-    // 2. girlsDataにスコアを付与
+    // 選択されたセールスポイントを配列で取得
+    const selectedSalesPoints = new Set(Object.keys(score));
+
+
     const girlsDataWithPoint = girlsData.map((girl) => {
       const earn_point = girl.salespoint_ids.reduce((point, id) => {
         return point + (score[id] || 0);
       }, 0);
-      return { ...girl, earn_point };
+
+      const girlSalesPoints = new Set(girl.salespoint_ids.filter(x => x !== null));
+
+      // 選択されたセールスポイントと完全一致フラグ
+      const isFullMatch = girlSalesPoints.isSubsetOf(selectedSalesPoints);
+      return { ...girl, earn_point, isFullMatch };
     });
+
+
+    // 2. girlsDataにスコアを付与
+    // const girlsDataWithPoint = girlsData.map((girl) => {
+    //   const earn_point = girl.salespoint_ids.reduce((point, id) => {
+    //     return point + (score[id] || 0);
+    //   }, 0);
+    //   return { ...girl, earn_point };
+    // });
+
 
     // 3. ソート処理を最適化
     girlsDataWithPoint.sort((a, b) => {
+      // 本日出勤
       if (b.today_work_flg !== a.today_work_flg) {
         return b.today_work_flg ? 1 : -1;
       }
+
+      // マッチングしたセールスポイント数
       if (b.earn_point !== a.earn_point) {
         return b.earn_point - a.earn_point;
       }
+
+      // 写メ日記の投稿有無
       if (b.diary_flg !== a.diary_flg) {
         return b.diary_flg ? 1 : -1;
       }
+
+      // レビューの有無
       if (b.review_flg !== a.review_flg) {
         return b.review_flg ? 1 : -1;
       }
+
+      // 直近1週間以内の出勤数
       return b.w_shukkin.filter(Boolean).length - a.w_shukkin.filter(Boolean).length;
     });
 

@@ -28,7 +28,6 @@ const StandardResult = () => {
 
   return (
     <>
-
       <div className='h-full max-h-full w-full flex justify-center items-center overflow-hidden relative'>
 
         <StandardResultBg />
@@ -47,7 +46,7 @@ const StandardResult = () => {
               className={`w-full h-2/6 max-h-2/6 min-h-2/6 overflow-y-auto mt-3 md:mt-6 flex ${isResultOverHeight ? "items-start" : "items-center"}`}
               ref={refResult}
             >
-              <div className='whitespace-pre-wrap w-full text-base md:text-3xl text-slate-700 font-semibold flex justify-center'>
+              <div className='whitespace-pre-wrap w-full text-base md:text-3xl text-slate-700 font-semibold flex justify-center break-all'>
                 {(currentQuestionnarie as ResultType).result}
               </div>
             </div>
@@ -58,7 +57,7 @@ const StandardResult = () => {
               className={`w-full h-4/6 max-h-4/6 min-h-4/6 overflow-y-auto mb-3 md:mb-6 flex ${isMsgOverHeight ? "items-start" : "items-center"}`}
               ref={refMsg}
             >
-              <div className='whitespace-pre-wrap  w-full text-base md:text-2xl text-slate-600 font-normal flex justify-center'>
+              <div className='whitespace-pre-wrap  w-full text-base md:text-2xl text-slate-600 font-normal flex justify-center break-all'>
                 {(currentQuestionnarie as ResultType).message}
               </div>
             </div>

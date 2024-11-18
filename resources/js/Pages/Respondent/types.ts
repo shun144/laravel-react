@@ -113,4 +113,25 @@ export type GirlType = {
   w_shukkin: string[];
   salespoint_ids: string[];
   earn_point: number;
+  isFullMatch: boolean;
 }
+
+
+// export type GirlType = {
+//   id: string;
+//   name: string;
+//   catchphrase: string | string[];
+//   age: string;
+//   height: string;
+//   cup: string;
+//   diary_flg: boolean;
+//   review_flg: boolean;
+//   picture_url: string;
+//   mypage_url: string;
+//   bwh: string[];
+//   yoyaku_url: string;
+//   today_work_flg: boolean;
+//   w_shukkin: string[];
+//   salespoint_ids: string[];
+//   earn_point: number;
+// }
