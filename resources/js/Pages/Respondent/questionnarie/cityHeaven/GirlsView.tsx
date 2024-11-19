@@ -104,38 +104,23 @@ const GirlsView = ({ girlsData }: Props) => {
                     </div>
                   </div>
 
-                  <div className="w-full flex flex-col md:flex-row md:justify-between items-end md:items-center  md:min-h-7 text-sm md:text-md">
+                  <div className="w-full flex flex-row justify-between items-center md:min-h-7 pb-1 md:pb-0">
 
-                    {/* <div className="text-slate-500 select-none">
+                    <div className="text-white select-none px-1 md:px-2 rounded-lg bg-violet-400/75 ">
+                      {isFullMatch ? "" : (<p className="text-[8px] md:text-sm py-1 md:py-0 ">こちらもオススメ女性</p>)}
+                    </div>
+
+
+                    {/* <div className="text-white select-none text-[8px] md:text-sm px-1 md:px-2 rounded-lg bg-violet-400/95 ">
                       {isFullMatch ? "" : "こちらもオススメ女性"}
                     </div> */}
 
-                    <a className="block md:px-2 pb-2 underline text-end text-violet-500  md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
+                    <a className="block md:px-2 pb-1 md:pb-0 text-[13px] md:text-base underline text-violet-500  md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
                       onClick={(e) => handleClick(e, name, mypage_url)}
                     >女の子のマイページ
                     </a>
                   </div>
 
-                  {/* <div className="w-full flex justify-between items-center md:min-h-7 text-sm md:text-md">
-
-                    <div className="text-slate-500 select-none">
-                      {isFullMatch ? "" : "こちらもオススメ女性"}
-                    </div>
-
-                    <a className="block px-2 py-2 underline text-end text-violet-500  md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
-                      onClick={(e) => handleClick(e, name, mypage_url)}
-                    >女の子のマイページ
-                    </a>
-                  </div> */}
-
-
-
-                  {/* <div className="w-full flex justify-end items-center md:min-h-7">
-                    <a className="block px-2 py-2 underline text-end text-violet-500 text-sm md:text-md md:cursor-pointer md:trainstion-all md:duration-200 hover:text-violet-300"
-                      onClick={(e) => handleClick(e, name, mypage_url)}
-                    >女の子のマイページ
-                    </a>
-                  </div> */}
 
 
                 </div>
