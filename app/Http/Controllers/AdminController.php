@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use App\Rules\ProhibitedNames;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Crypt;
 
 class AdminController extends Controller
 {
@@ -32,6 +33,17 @@ class AdminController extends Controller
             ->select('id','name', 'english_name', 'email', 'first_password')
             ->get();
             
+            if ($records->isNotEmpty()) {
+                $records = $records->map(function ($record) {
+                    try {
+                        $record->first_password = Crypt::decryptString($record->first_password);
+                    } catch (\Exception $e) {
+                        $record->first_password = null;
+                    }
+                    return $record;
+                });
+            }
+
             return Inertia::render('Admin/User/Index', [
                 'initialUsers' =>  $records,
                 'success' => session('success'),
@@ -78,13 +90,15 @@ class AdminController extends Controller
             'password' => ['required',  Rules\Password::defaults()],
         ],);
 
+
         try {
             $user = User::create([
                 'name' => $validatedData['name'],
                 'english_name' => $validatedData['english_name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
-                'first_password' => $validatedData['password'],
+                'first_password' => Crypt::encryptString($validatedData['password']),
+                // 'first_password' => $validatedData['password'],
             ]);
     
             return to_route('admin.dashboard')->with('success', 'ユーザを追加しました');
@@ -111,7 +125,7 @@ class AdminController extends Controller
                 'initialName' =>  $user_records->name,
                 'initialEnglishName' =>  $user_records->english_name,
                 'initialEmail' =>  $user_records->email,
-                'initialFirstPassword' =>   $user_records->first_password,
+                'initialFirstPassword' =>  Crypt::decryptString($user_records->first_password),
             ]);
 
         } catch (\Exception $e) {
