@@ -113,7 +113,7 @@ export type GirlType = {
   w_shukkin: string[];
   salespoint_ids: string[];
   earn_point: number;
-  isFullMatch: boolean;
+  isAllContain: boolean;
 }
 
 

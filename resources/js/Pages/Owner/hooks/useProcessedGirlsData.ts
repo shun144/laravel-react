@@ -51,9 +51,14 @@ const useProcessedGirlsData = ({ answerHistories }: Props) => {
 
       const girlSalesPoints = new Set(girl.salespoint_ids.filter(x => x !== null));
 
-      // 選択されたセールスポイントと完全一致フラグ
-      const isFullMatch = girlSalesPoints.isSubsetOf(selectedSalesPoints);
-      return { ...girl, earn_point, isFullMatch };
+      // 選択されたセールスポイントを全て含んでいるかどうか
+      // A.isSubsetOf(B)：AはBに含まれる→true
+      const isAllContain = selectedSalesPoints.isSubsetOf(girlSalesPoints);
+
+      // // 選択されたセールスポイントと完全一致フラグ
+      // // A.isSubsetOf(B)：AはBに含まれる→true
+      // const isFullMatch = girlSalesPoints.isSubsetOf(selectedSalesPoints);
+      return { ...girl, earn_point, isAllContain };
     });
 
 

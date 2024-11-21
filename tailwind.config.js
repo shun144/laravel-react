@@ -33,6 +33,9 @@ export default {
                 appear: "appear 1.5s ease 2s 1 forwards",
                 slide: "slide 40s ease-in-out infinite alternate",
             },
+            rotate: {
+                '30': '30deg'
+            }
         },
         screens: {
             'xs': '375px',
