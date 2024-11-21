@@ -125,7 +125,7 @@ const GirlsView = ({ girlsData }: Props) => {
                         className="bg-violet-400 shadow-md  text-white rounded-lg hover:bg-violet-500 transition-all duration-200
                         text-[12px] px-2 py-1 md:text-base md:py-1"
                         onClick={(e) => handleClick(e, name, mypage_url)}>
-                        女の子ページ
+                        女の子ページへ
                       </button>
                     </div>
                   </div>
