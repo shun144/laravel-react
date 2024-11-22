@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
 
 
         Admin::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@example.com',
+            'name' => 'suzuki',
+            'email' => 'ohsuke0404@yahoo.co.jp',
         ]);
         
         // User::factory()->create([
