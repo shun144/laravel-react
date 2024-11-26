@@ -25,15 +25,15 @@ use App\Models\CityHeaven;
 class CityHeavenController extends Controller
 {
 
-
-
     public function getCityHeavenGirls($owner) {
+
 
         $user_record = DB::table('users')->where('english_name', $owner)->select('id')->first();
 
         if (is_null($user_record)) {
             return response()->json( ['message' => 'データが見つかりませんでした。' ], 404);
         }
+
 
         $cityheaven_record = DB::table('city_heavens')->where('user_id', $user_record->id)->select('access_key', 'shop_id')->first();
         
@@ -43,8 +43,10 @@ class CityHeavenController extends Controller
 
         $decrypted_access_key = Crypt::decryptString($cityheaven_record->access_key);
         $decrypted_shop_id = Crypt::decryptString($cityheaven_record->shop_id);
-
+        
         $resShukkin = $this->getShukkinDayForOneWeek($decrypted_access_key,$decrypted_shop_id);  
+
+    
         if (isset($resShukkin['error_message'])) {
             $status_code = $resShukkin['status_code'];
             $error_message = $resShukkin['error_message'];
@@ -110,14 +112,7 @@ class CityHeavenController extends Controller
                 ]
             );
 
-            $xml = simplexml_load_string($res->getBody());
-
-            if (isset($xml->error)) {
-                return [
-                    'status_code' => 500,
-                    'error_message' => (string)$xml->error->message[0]
-                ];
-            }
+            $xml = $this->load_xml($res->getBody());
 
             $data = [];
             foreach (json_decode(json_encode($xml->xpath('//girls')), true) as $work) {
@@ -145,19 +140,27 @@ class CityHeavenController extends Controller
                 $statusCode = $response->getStatusCode();
                 $errorBody = json_decode($response->getBody()->getContents(), true);
                 $errorMessage = $errorBody['message'] ?? 'Unknown error occurred';
+
+                \Log::error($errorMessage.'(errLine.'.$e->getLine().')');
                 return [
                     'status_code' => $statusCode,
                     'error_message' => $errorMessage,
                 ];
-            } else {
+            } else {                
                 return [
                     'status_code' => 500,
-                    'error_message' => 'Network error or no response received.',
+                    'error_message' => '不明なRequestExceptionエラー',
                 ];
             }
         }
+        catch (\Exception $e) {
+            \Log::error($e->getMessage().'(errLine.'.$e->getLine().')');
+            return [
+                'status_code' => 500,
+                'error_message' => 'Network error or no response received.',
+            ];
+        }
     }
-
 
     private function getAllGirls($access_key, $shop_id) {
         $client = new Client();
@@ -173,14 +176,7 @@ class CityHeavenController extends Controller
                 ]
             );
 
-            $xml = simplexml_load_string($res->getBody());
-
-            if (isset($xml->error)) {
-                return [
-                    'status_code' => 500,
-                    'error_message' => (string)$xml->error->message[0]
-                ];
-            }
+            $xml = $this->load_xml($res->getBody());
 
             $data = [];
             foreach (json_decode(json_encode($xml->xpath('//girlslist')), true) as $girl) {
@@ -213,6 +209,7 @@ class CityHeavenController extends Controller
                 $statusCode = $response->getStatusCode();
                 $errorBody = json_decode($response->getBody()->getContents(), true);
                 $errorMessage = $errorBody['message'] ?? 'Unknown error occurred';
+                \Log::error($errorMessage.'(errLine.'.$e->getLine().')');
                 return [
                     'status_code' => $statusCode,
                     'error_message' => $errorMessage,
@@ -220,20 +217,58 @@ class CityHeavenController extends Controller
             } else {
                 return [
                     'status_code' => 500,
-                    'error_message' => 'Network error or no response received.',
+                    'error_message' => '不明なRequestExceptionエラー',
                 ];
             }
         }
+        catch (\Exception $e) {
+            \Log::error($e->getMessage().'(errLine.'.$e->getLine().')');
+            return [
+                'status_code' => 500,
+                'error_message' => 'Network error or no response received.',
+            ];
+        }
     }
 
+    /**
+     * 無効なXML文字を除外しXMLオブジェクトに変換
+     */
+    private function load_xml($inStr)
+    {
+        try {
+            // XMLをUTF-8にエンコード
+            // xml1.0 encoding="utf-8"でXML宣言されているが怪しいため実施
+            /* mbstring.language が "Japanese" の場合 "auto" は、"ASCII,JIS,UTF-8,EUC-JP,SJIS" に展開される */
+            $inStr = mb_convert_encoding($inStr, 'UTF-8', 'auto');
+
+            // XML1.0で無効な文字（制御文字など）を除外
+            $removeInvalidXmlChars = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', $inStr);
+
+            // XML文字列をオブジェクトに変換
+            $xml = simplexml_load_string($removeInvalidXmlChars);
+
+            if ($xml === false) {
+                // simplexml_load_string のエラー情報を取得
+                $errors = libxml_get_errors();
+                $errorMessage = 'XMLパースエラー: ';
+                foreach ($errors as $error) {
+                    $errorMessage .= trim($error->message) . ' ';
+                }
+                libxml_clear_errors(); // エラーをクリア
+                throw new \Exception($errorMessage);
+            }
+            return $xml;
+
+        } catch (Exception $e) {
+            throw new Exception('XMLの読み込み中にエラーが発生しました: ' . $e->getMessage());
+        }
+    }
 
     // $keyで昇順ソートする
     private function sortAscArrayByKey(&$array, $key) {
         $arrayCols = array_column($array, $key);
         array_multisort($arrayCols, SORT_ASC, $array);               
     }
-
-
 
     /**
      * APIの資格情報更新
