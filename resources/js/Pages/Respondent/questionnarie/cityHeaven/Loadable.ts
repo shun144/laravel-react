@@ -14,10 +14,11 @@ type LoadableState<T> =
 
 export class Loadable<T> {
   #state: LoadableState<T>;
-  constructor(promise: Promise<T>) {
+
+  constructor(cb: Promise<T>) {
     this.#state = {
       status: "pending",
-      promise: promise.then(
+      promise: cb.then(
         // thenの第一引数：resolveの状態で実行される処理
         (data) => {
           this.#state = {
@@ -37,6 +38,7 @@ export class Loadable<T> {
       ),
     };
   }
+
   getOrThrow(): T {
     switch (this.#state.status) {
       case "pending":

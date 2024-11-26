@@ -20,7 +20,6 @@ export default function AdminAuthenticated({ header, children }: PropsWithChildr
                         <div className="flex">
                             <div className="shrink-0 flex items-center overflow-hidden">
                                 <Link href="/admin/users" className='h-full flex justify-center items-center'>
-                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
                                     <Logo className="block h-5/6 w-auto object-cover fill-current" />
                                 </Link>
                             </div>

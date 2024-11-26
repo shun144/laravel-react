@@ -1,5 +1,4 @@
 import { useState, PropsWithChildren, ReactNode } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
@@ -12,11 +11,9 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        // <div className="min-h-screen bg-gray-100">
-        // <div className="min-h-screen bg-gray-100 flex flex-col">
         <div className="flex flex-col min-h-screen h-screen bg-gray-100">
 
-            {/* <nav className="bg-white border-b border-gray-100"> */}
+
 
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +21,6 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
                         <div className="flex">
                             <div className="shrink-0 flex items-center overflow-hidden">
                                 <Link href="/" className='h-full flex justify-center items-center'>
-                                    {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
                                     <Logo className="block h-5/6 w-auto object-cover fill-current" />
                                 </Link>
                             </div>
@@ -49,9 +45,6 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
                                     結果集計
                                 </NavLink>
 
-                                {/* <NavLink href={route('dashboard', { id: 1 })} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink> */}
                             </div>
                         </div>
 
@@ -120,9 +113,7 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        {/* <ResponsiveNavLink href={route('dashboard', { id: 1 })} active={route().current('dashboard')}>
-                            Dashboard
-                        </ResponsiveNavLink> */}
+
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             診断一覧
                         </ResponsiveNavLink>
@@ -156,17 +147,6 @@ export default function Authenticated({ header, children }: PropsWithChildren<{ 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{header}</div>
             </header>
 
-            {/* {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
-                </header>
-            )} */}
-
-            {/* このmain要素の親要素のflexに対してflex-grow:1を指定することで
-            nav要素やheader要素など、他のheight:autoな子要素の残りの高さを自動で割り当てる
-            */}
-            {/* <main className={` ${header ? 'h-[88vh]' : 'h-[93vh]'} min-h-40`}>{children}</main> */}
-            {/* <main>{children}</main> */}
             <main className="grow overflow-y-scroll">{children}</main>
         </div>
     );

@@ -1,13 +1,14 @@
-import { SalsPointType } from '../Owner/types';
+import { SalsPointType } from '@/Pages/Owner/types';
 
+// アンケート回答履歴
 export type AnswerHistoryType = {
   id: string;
   question: string;
   answer: string;
   salesPointNos: string[];
-  // salesPoints: SalsPointType[];
 }
 
+// 選択肢
 type ChoiceType = {
   id: string;
   content: string;
@@ -15,6 +16,7 @@ type ChoiceType = {
   nextId?: string;
 }
 
+// 質問
 export type QuestionType = {
   id: string;
   topic: string;
@@ -22,6 +24,7 @@ export type QuestionType = {
   category: 'question' | 'result' | 'none';
 }
 
+// 回答
 export type ResultType = {
   id: string;
   result: string;
@@ -31,17 +34,19 @@ export type ResultType = {
   category: 'question' | 'result' | 'none';
 }
 
+
+// アンケート
 export type QuestionnarieType = (QuestionType | ResultType);
 
+
+// アンケートzustand用の型
 export type QuestionnaireState = {
   isLoading: boolean;
   questionnarieDatas: QuestionnarieType[];
   currentQuestionnarie: QuestionnarieType;
   answerHistories: AnswerHistoryType[];
   baseGirlDataList: GirlType[];
-  // isGirlsLoading: boolean;
   firstQuestionId: string;
-
 
   setIsLoading: (by: boolean) => void;
   setQuestionnarieDatas: (datas: QuestionnarieType[]) => void;
@@ -49,10 +54,14 @@ export type QuestionnaireState = {
   setAnswerHistories: (id: string, question: string, answer: string, salesPoints: SalsPointType[]) => void;
 
   setBaseGirlDataList: (by: GirlType[]) => void;
-  // setisGirlsLoading: (by: boolean) => void,
   setFirstQuestionId: (by: string) => void,
 
   reset: () => void;
+
+  /**
+   * 現在の診断を1つ前の状態に戻し、最後の回答履歴を削除する
+   * @returns 
+   */
   backStep: () => void;
 };
 
@@ -107,31 +116,18 @@ export type GirlType = {
   review_flg: boolean;
   picture_url: string;
   mypage_url: string;
+  // 3サイズ
   bwh: string[];
   yoyaku_url: string;
+  // 本日出勤フラグ
   today_work_flg: boolean;
+  // 直近1週間の出勤予定
   w_shukkin: string[];
+  // セールスポイント
   salespoint_ids: string[];
   earn_point: number;
+  // 選択されたセールスポイントを全て含むか
   isAllContain: boolean;
 }
 
 
-// export type GirlType = {
-//   id: string;
-//   name: string;
-//   catchphrase: string | string[];
-//   age: string;
-//   height: string;
-//   cup: string;
-//   diary_flg: boolean;
-//   review_flg: boolean;
-//   picture_url: string;
-//   mypage_url: string;
-//   bwh: string[];
-//   yoyaku_url: string;
-//   today_work_flg: boolean;
-//   w_shukkin: string[];
-//   salespoint_ids: string[];
-//   earn_point: number;
-// }

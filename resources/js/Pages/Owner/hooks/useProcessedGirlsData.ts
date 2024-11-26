@@ -34,44 +34,37 @@ const useProcessedGirlsData = ({ answerHistories }: Props) => {
 
     const score: { [key: string]: number } = {};
 
+    // 回答履歴から選択されたセールスポイントを取得
+    // セールスポイントごとの件数も取得
     answerHistories.forEach(({ salesPointNos }) => {
       salesPointNos.forEach((item) => {
         score[item] = (score[item] || 0) + 1;
       });
     });
 
-    // 選択されたセールスポイントを配列で取得
+    // 選択されたセールスポイントを集合化
     const selectedSalesPoints = new Set(Object.keys(score));
 
 
     const girlsDataWithPoint = girlsData.map((girl) => {
+
+      // 選択されたセールスポイントと、女の子のセールスポイントと一致する数を取得
       const earn_point = girl.salespoint_ids.reduce((point, id) => {
         return point + (score[id] || 0);
       }, 0);
 
+      // 女の子のセールスポイントを集合に変換。後続の部分集合のチェックで使用
       const girlSalesPoints = new Set(girl.salespoint_ids.filter(x => x !== null));
 
-      // 選択されたセールスポイントを全て含んでいるかどうか
+      // 選択されたセールスポイントを全て含んでいるかどうか（部分集合チェック）
       // A.isSubsetOf(B)：AはBに含まれる→true
       const isAllContain = selectedSalesPoints.isSubsetOf(girlSalesPoints);
 
-      // // 選択されたセールスポイントと完全一致フラグ
-      // // A.isSubsetOf(B)：AはBに含まれる→true
-      // const isFullMatch = girlSalesPoints.isSubsetOf(selectedSalesPoints);
       return { ...girl, earn_point, isAllContain };
     });
 
 
-    // 2. girlsDataにスコアを付与
-    // const girlsDataWithPoint = girlsData.map((girl) => {
-    //   const earn_point = girl.salespoint_ids.reduce((point, id) => {
-    //     return point + (score[id] || 0);
-    //   }, 0);
-    //   return { ...girl, earn_point };
-    // });
-
-
-    // 3. ソート処理を最適化
+    // 女の子の表示順を制御
     girlsDataWithPoint.sort((a, b) => {
       // 本日出勤
       if (b.today_work_flg !== a.today_work_flg) {

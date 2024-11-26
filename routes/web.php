@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController as OwnerProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\AdminController;
-// use App\Http\Controllers\ApiController;
 use App\Http\Controllers\RespondentController;
 use App\Http\Controllers\OwnerContoller;
 use App\Http\Controllers\CityHeavenController;
@@ -73,10 +72,6 @@ Route::post('/{owner}/{flowUrl}', [RespondentController::class, 'addAchievement'
 
 Route::get('/{owner}/{flowUrl}/questionnaire', [RespondentController::class,'getQuestionnair']);
 Route::get('/{owner}/{flowUrl}/firstQuestionId', [RespondentController::class,'getFirstQuestionId']);
-
-
 Route::get('/{owner}/{flowUrl}/cityheaven', [CityHeavenController::class, 'getCityHeavenGirls']);
-
-// Route::get('/{owner}/{flowUrl}/cityheaven', [ApiController::class, 'getCityHeavenGirls']);
 
 

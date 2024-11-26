@@ -15,7 +15,6 @@ export const useRespondentStore = create<QuestionnaireState>(set => ({
   questionnarieDatas: [],
   answerHistories: [],
   baseGirlDataList: [],
-  // isGirlsLoading: true,
   firstQuestionId: "",
 
   setIsLoading: (by: boolean) => set({ isLoading: by }),
@@ -44,13 +43,13 @@ export const useRespondentStore = create<QuestionnaireState>(set => ({
   })),
 
   setBaseGirlDataList: (by: GirlType[]) => { set({ baseGirlDataList: by }) },
-  // setisGirlsLoading: (by: boolean) => set({ isGirlsLoading: by }),
   setFirstQuestionId: (by: string) => set({ firstQuestionId: by }),
 
   reset: () => set(state => ({
     currentQuestionnarie: state.questionnarieDatas.find(x => x.id === state.firstQuestionId),
     answerHistories: [],
   })),
+
 
   backStep: () => set(state => ({
     currentQuestionnarie: state.questionnarieDatas.find(x => x.id === state.answerHistories[state.answerHistories.length - 1].id),

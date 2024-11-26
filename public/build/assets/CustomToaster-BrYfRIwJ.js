@@ -1,1 +1,0 @@
-import{j as e}from"./app-yF3zWG5b.js";import{I as o}from"./index-PjL2b1Z8.js";import{n as x}from"./index-PjL2b1Z8.js";const p=({position:r="bottom-right",duration:t=3e3})=>e.jsx(o,{position:r,reverseOrder:!1,toastOptions:{duration:t,style:{maxWidth:"400px",whiteSpace:"pre-wrap",wordBreak:"break-all"}}});export{p as CustomToaster,x as toast};
