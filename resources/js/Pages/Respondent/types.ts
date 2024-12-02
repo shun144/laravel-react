@@ -105,6 +105,8 @@ export type DbEdgeType = {
 }
 
 
+export type MatchType = 'ALL' | 'PART' | 'NOTHING';
+
 export type GirlType = {
   id: string;
   name: string;
@@ -125,9 +127,13 @@ export type GirlType = {
   w_shukkin: string[];
   // セールスポイント
   salespoint_ids: string[];
-  earn_point: number;
-  // 選択されたセールスポイントを全て含むか
-  isAllContain: boolean;
+  // earn_point: number;
+  matchSalesPointNum: number;
+
+  // 選択されたマッチング
+  matchType: MatchType
+  // // 選択されたセールスポイントを全て含むか
+  // isContainAll: boolean;
 }
 
 

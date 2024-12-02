@@ -70,11 +70,23 @@ const GirlsView = ({ girlsData }: Props) => {
           md:mb-10 md:grid-cols-5 md:gap-x-6 md:gap-y-8'>
           {
             currentItems &&
-            currentItems.map(({ id, name, catchphrase, picture_url, mypage_url, bwh, age, height, cup, isAllContain }, idx) => (
+            currentItems.map(({ id, name, catchphrase, picture_url, mypage_url, bwh, age, height, cup, matchType, matchSalesPointNum, today_work_flg, diary_flg }, idx) => (
 
               <div key={id}>
-                <div className="text-violet-500 select-none px-1 md:px-2 w-full flex justify-center items-center] ">
-                  <div className="text-[8px] md:text-sm min-h-7 md:min-h-6">{isAllContain ? "" : (
+
+                <div className={` select-none px-1 md:px-2 w-full flex justify-center items-center 
+                  ${matchType === 'ALL' ? "text-amber-500 font-bold" : matchType === 'PART' ? "text-violet-500 font-bold" : "text-violet-500"}`}>
+                  <div className="text-[8px] md:text-sm min-h-7 md:min-h-6">
+                    <div className="relative text-sm md:text-base 
+                    before:content-['|']  before:-rotate-30 before:absolute before:-top-0 before:-left-3
+                    after:content-['|']  after:rotate-30 after:absolute after:-top-0 after:-right-3">
+                      {matchType === 'ALL' ? "あなたにピッタリ" : matchType === 'PART' ? "こちらもオススメ" : "店長オススメ"}
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="text-violet-500 select-none px-1 md:px-2 w-full flex justify-center items-center] ">
+                  <div className="text-[8px] md:text-sm min-h-7 md:min-h-6">{isContainAll ? "" : (
                     <div className="relative text-sm md:text-base
                     before:content-['|']  before:-rotate-30 before:absolute before:-top-0 before:-left-3
                     after:content-['|']  after:rotate-30 after:absolute after:-top-0 after:-right-3"
@@ -82,7 +94,7 @@ const GirlsView = ({ girlsData }: Props) => {
                       こちらもオススメ
                     </div>
                   )}</div>
-                </div>
+                </div> */}
 
                 <div
                   className="flex flex-col items-center bg-white border  border-gray-200 rounded-lg shadow relative
