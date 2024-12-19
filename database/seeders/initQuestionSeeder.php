@@ -12,10 +12,10 @@ class initQuestionSeeder extends Seeder
     {
         $params = [];
 
-        for($i = 0; $i < 30; $i++)[
+        for($i = 0; $i < 21; $i++)[
             array_push($params,
             [
-                'id'=>'b4snjf4un8'. $i,
+                'id'=>'m7g94rjls1o'. $i,
                 'position'=>
                     [
                         'x'=> 0 + 150 * $i,
@@ -31,11 +31,11 @@ class initQuestionSeeder extends Seeder
                 'selected'=>true,
                 'dragging'=>false,
                 'data'=>[
-                    'topic'=>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                    'topic'=>'ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ',
                     'choices'=>[
                         [
                             'id'=>'9gmafs0g4ng'. $i,
-                            'content'=>'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+                            'content'=>'いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい',
                             'salePoints'=>[
                                 ['value'=>'01','label'=>'ルックス抜群','no'=>'01'],
                                 ['value'=>'02','label'=>'スタイル抜群','no'=>'02'],
@@ -44,7 +44,7 @@ class initQuestionSeeder extends Seeder
                         ],
                         [
                             'id'=>'sfv43srfd48'. $i,
-                            'content'=>'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+                            'content'=>'いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい',
                             'salePoints'=>[
                                 ['value'=>'01','label'=>'ルックス抜群','no'=>'01'],
                                 ['value'=>'02','label'=>'スタイル抜群','no'=>'02'],
@@ -53,29 +53,36 @@ class initQuestionSeeder extends Seeder
                         ],
                         [
                             'id'=>'5mvsqt8b0n'. $i,
-                            'content'=>'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+                            'content'=>'いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい',
                             'salePoints'=>[
                                 ['value'=>'01','label'=>'ルックス抜群','no'=>'01'],
                                 ['value'=>'02','label'=>'スタイル抜群','no'=>'02'],
                                 ['value'=>'03','label'=>'サービス抜群','no'=>'03'],
+                                ['value'=>'04','label'=>'感度抜群','no'=>'04'],
+                                ['value'=>'05','label'=>'素人','no'=>'05'],
+                                
                             ]
                         ],
                         [
                             'id'=>'8q3cu4ce95o'. $i,
-                            'content'=>'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+                            'content'=>'いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい',
                             'salePoints'=>[
                                 ['value'=>'01','label'=>'ルックス抜群','no'=>'01'],
                                 ['value'=>'02','label'=>'スタイル抜群','no'=>'02'],
                                 ['value'=>'03','label'=>'サービス抜群','no'=>'03'],
+                                ['value'=>'04','label'=>'感度抜群','no'=>'04'],
+                                ['value'=>'05','label'=>'素人','no'=>'05'],
                             ]
                         ],
                         [
                             'id'=>'evkr4ed11eg'. $i,
-                            'content'=>'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+                            'content'=>'いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい',
                             'salePoints'=>[
                                 ['value'=>'01','label'=>'ルックス抜群','no'=>'01'],
                                 ['value'=>'02','label'=>'スタイル抜群','no'=>'02'],
                                 ['value'=>'03','label'=>'サービス抜群','no'=>'03'],
+                                ['value'=>'04','label'=>'感度抜群','no'=>'04'],
+                                ['value'=>'05','label'=>'素人','no'=>'05'],
                             ]
                         ]
                     ]
@@ -83,12 +90,18 @@ class initQuestionSeeder extends Seeder
             ])
         ];
 
-        DB::table('questions')->insert([
-            [
-                'flow_id' => 1,
-                'node_datas' => json_encode($params)
-            ]
+        DB::table('questions')
+        ->where('flow_id', 4)
+        ->update([
+            'node_datas' => json_encode($params)
         ]);
+
+        // DB::table('questions')->insert([
+        //     [
+        //         'flow_id' => 4,
+        //         'node_datas' => json_encode($params)
+        //     ]
+        // ]);
 
     }
 }

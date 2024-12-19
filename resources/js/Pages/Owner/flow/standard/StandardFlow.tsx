@@ -33,6 +33,7 @@ import "@xyflow/react/dist/style.css";
 import "../../../../../css/owner/flow.css";
 import "react-contexify/dist/ReactContexify.css";
 import { router, usePage } from "@inertiajs/react";
+import { questionNodeMaxNum, resultNodeMaxNum } from "@/Pages/Owner/constants";
 
 type Props = {
     initialNodes: Node[];
@@ -270,14 +271,14 @@ const StandardFlow = ({
                         label="質問"
                         color="indigo"
                         nodeNum={qNodeNum}
-                        maxNodeNum={15}
+                        maxNodeNum={questionNodeMaxNum}
                     />
                     <Draggable
                         id="draggable-result"
                         label="結果"
                         color="orange"
                         nodeNum={rNodeNum}
-                        maxNodeNum={10}
+                        maxNodeNum={resultNodeMaxNum}
                     />
                 </div>
 
